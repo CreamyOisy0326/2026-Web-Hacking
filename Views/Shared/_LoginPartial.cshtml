@@ -1,0 +1,35 @@
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+    var appUser = await UserManager.GetUserAsync(User);
+    <li class="nav-item">
+        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@Localizer["Hello"] @User.Identity?.Name!</a>
+    </li>
+    <li class="nav-item d-flex align-items-center">
+        <span class="nav-link text-primary fw-bold pe-1">💰 @(appUser?.Credit.ToString("N0") ?? "0")</span>
+        <a asp-controller="Credit" asp-action="Recharge" class="btn btn-outline-primary btn-sm rounded-circle px-1 py-0" title="@Localizer["Recharge"]">
+            <i class="bi bi-plus"></i>
+        </a>
+    </li>
+    <li class="nav-item">
+        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button  type="submit" class="nav-link btn btn-link text-dark">@Localizer["Logout"]</button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">@Localizer["Register"]</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">@Localizer["Login"]</a>
+    </li>
+}
+</ul>

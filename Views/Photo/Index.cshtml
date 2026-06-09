@@ -1,0 +1,40 @@
+@model IEnumerable<PhotoMarket.Models.Photo>
+
+@{
+    ViewData["Title"] = "사진 마켓";
+}
+
+    <div class="container mt-4">
+        <div class="row mb-4 align-items-center">
+            <div class="col">
+                <h1 class="display-5 fw-bold text-primary">최신 사진 목록</h1>
+            </div>
+            <div class="col-auto">
+                <a asp-action="Create" class="btn btn-primary btn-lg shadow-sm">
+                    <i class="bi bi-upload"></i> 사진 판매하기
+                </a>
+            </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var item in Model) {
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-sm card-hover-effect">
+                        <img src="@item.FilePath" class="card-img-top object-fit-cover" alt="@item.Title" style="height: 250px;">
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate">@item.Title</h5>
+                            <p class="card-text text-muted text-truncate">@item.Description</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fs-5 fw-bold text-success">₩@item.Price.ToString("N0")</span>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm rounded-pill px-3">상세보기</a>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 text-muted small py-3">
+                            판매자: @(item.Seller?.UserName ?? "알 수 없음")
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+

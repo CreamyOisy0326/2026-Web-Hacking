@@ -1,0 +1,54 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = Localizer["Welcome"];
+}
+
+<!-- Section 1: Frame-Style Hero -->
+<section class="hero-clean">
+    <div class="container hero-content">
+        <div class="glass-card fade-in-up">
+            <h1 class="main-title">@Localizer["WelcomeMessage"]</h1>
+            <p class="main-subtitle fade-in-up delay-1">@Localizer["WelcomeSubtitle"]</p>
+            <div class="hero-actions fade-in-up delay-2">
+                <a asp-controller="Photo" asp-action="Index" class="btn-glow btn-lg">@Localizer["ExploreNow"]</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section 2: Features Grid -->
+<section class="feature-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-6 fw-bold">@Localizer["IntroTitle"]</h2>
+            <div class="mx-auto" style="width: 60px; height: 4px; background: #007bff; border-radius: 2px;"></div>
+        </div>
+        
+        <div class="feature-grid">
+            <div class="feature-card fade-in-up delay-1">
+                <div class="feature-icon">
+                    <i class="bi bi-shield-lock"></i>
+                </div>
+                <h3 class="feature-title">@Localizer["Feature1Title"]</h3>
+                <p class="feature-desc">@Localizer["Feature1Desc"]</p>
+            </div>
+            
+            <div class="feature-card fade-in-up delay-2">
+                <div class="feature-icon">
+                    <i class="bi bi-patch-check"></i>
+                </div>
+                <h3 class="feature-title">@Localizer["Feature2Title"]</h3>
+                <p class="feature-desc">@Localizer["Feature2Desc"]</p>
+            </div>
+            
+            <div class="feature-card fade-in-up delay-3">
+                <div class="feature-icon">
+                    <i class="bi bi-globe-americas"></i>
+                </div>
+                <h3 class="feature-title">@Localizer["Feature3Title"]</h3>
+                <p class="feature-desc">@Localizer["Feature3Desc"]</p>
+            </div>
+        </div>
+    </div>
+</section>

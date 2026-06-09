@@ -1,0 +1,130 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization
+@inject IViewLocalizer Localizer
+@inject IStringLocalizer<PhotoMarket.SharedResource> SharedLocalizer
+
+@{
+    ViewData["Title"] = SharedLocalizer["AdminDashboard"];
+    var photos = ViewBag.Photos as IEnumerable<PhotoMarket.Models.Photo>;
+    var boards = ViewBag.Boards as IEnumerable<PhotoMarket.Models.Board>;
+}
+
+<div class="container mt-4">
+    <h1 class="display-5 fw-bold text-danger mb-4"><i class="bi bi-shield-lock me-2"></i>@SharedLocalizer["AdminDashboard"]</h1>
+
+    <div class="row">
+        <!-- 사진 관리 섹션 -->
+        <div class="col-12 mb-5">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-header bg-dark text-white rounded-top-4 py-3">
+                    <h4 class="mb-0"><i class="bi bi-camera me-2"></i>@SharedLocalizer["ManagePhotos"]</h4>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th class="ps-4">@SharedLocalizer["Title"]</th>
+                                <th>@SharedLocalizer["Seller"]</th>
+                                <th>@SharedLocalizer["Price"]</th>
+                                <th class="text-end pe-4">@SharedLocalizer["Actions"]</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var photo in photos!)
+                            {
+                                <tr>
+                                    <td class="ps-4">@photo.Title</td>
+                                    <td>@photo.Seller?.UserName</td>
+                                    <td>₩@photo.Price.ToString("N0")</td>
+                                    <td class="text-end pe-4">
+                                        <form asp-action="DeletePhoto" asp-route-id="@photo.Id" method="post" onsubmit="return confirm('@SharedLocalizer["ConfirmDeletePhoto"]');">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">@SharedLocalizer["Delete"]</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 게시판 관리 섹션 -->
+        <div class="col-12 mb-5">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-header bg-secondary text-white rounded-top-4 py-3">
+                    <h4 class="mb-0"><i class="bi bi-chat-dots me-2"></i>@SharedLocalizer["ManagePosts"]</h4>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th class="ps-4">@SharedLocalizer["Title"]</th>
+                                <th>@SharedLocalizer["Author"]</th>
+                                <th>@SharedLocalizer["CreatedAt"]</th>
+                                <th class="text-end pe-4">@SharedLocalizer["Actions"]</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var board in boards!)
+                            {
+                                <tr>
+                                    <td class="ps-4">@board.Title</td>
+                                    <td>@board.Author?.UserName</td>
+                                    <td>@board.CreatedAt.ToString("yyyy-MM-dd")</td>
+                                    <td class="text-end pe-4">
+                                        <form asp-action="DeleteBoard" asp-route-id="@board.Id" method="post" onsubmit="return confirm('@SharedLocalizer["ConfirmDeletePost"]');">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">@SharedLocalizer["Delete"]</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 사용자 관리 섹션 (크레딧 조절) -->
+        @{
+            var users = ViewBag.Users as IEnumerable<PhotoMarket.Models.ApplicationUser>;
+        }
+        <div class="col-12 mb-5">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-header bg-primary text-white rounded-top-4 py-3">
+                    <h4 class="mb-0"><i class="bi bi-people me-2"></i>사용자 관리 (크레딧)</h4>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th class="ps-4">사용자 이메일</th>
+                                <th>현재 크레딧</th>
+                                <th class="text-end pe-4">크레딧 수정</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var user in users!)
+                            {
+                                <tr>
+                                    <td class="ps-4">@user.Email</td>
+                                    <td>💰 @user.Credit.ToString("N0")</td>
+                                    <td class="text-end pe-4">
+                                        <form asp-action="UpdateCredit" method="post" class="d-flex justify-content-end align-items-center">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="userId" value="@user.Id" />
+                                            <input type="number" name="credit" value="@user.Credit" class="form-control form-control-sm me-2" style="width: 120px;" />
+                                            <button type="submit" class="btn btn-sm btn-outline-primary">수정</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

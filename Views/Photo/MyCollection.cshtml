@@ -1,0 +1,65 @@
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<PhotoMarket.SharedResource> SharedLocalizer
+@model IEnumerable<PhotoMarket.Models.Transaction>
+
+@{
+    ViewData["Title"] = SharedLocalizer["MyCollection"];
+}
+
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="display-5 fw-bold text-primary">
+                <i class="bi bi-images me-2"></i>@SharedLocalizer["MyCollection"]
+            </h1>
+        </div>
+    </div>
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="text-center py-5">
+            <i class="bi bi-camera-fill display-1 text-muted mb-4"></i>
+            <h3 class="text-secondary">@SharedLocalizer["NoPhotosMessage"]</h3>
+            <a asp-action="Index" class="btn-floating mt-3 shadow-lg">
+                @SharedLocalizer["Home"]
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var item in Model)
+            {
+                if (item.Photo != null)
+                {
+                    <div class="col">
+                        <div class="card h-100 border-0 shadow-sm hover-shadow transition rounded-4 overflow-hidden">
+                            <img src="@item.Photo.FilePath" class="card-img-top object-fit-cover" alt="@item.Photo.Title" style="height: 250px;">
+                            <div class="card-body">
+                                <h5 class="card-title text-truncate fw-bold">@item.Photo.Title</h5>
+                                <p class="card-text text-muted text-truncate small">@item.Photo.Description</p>
+                                <div class="d-grid mt-3">
+                                    <a asp-action="Download" asp-route-id="@item.Photo.Id" class="btn btn-success rounded-pill shadow-sm">
+                                        <i class="bi bi-download me-2"></i>@SharedLocalizer["Download"]
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-transparent border-0 text-muted small pb-3">
+                                <i class="bi bi-person me-1"></i>@SharedLocalizer["Seller"]: @(item.Photo.Seller?.UserName ?? "Unknown")
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    }
+</div>
+
+<style>
+    .transition { transition: transform .2s ease-in-out, box-shadow .2s ease-in-out; }
+    .hover-shadow:hover { 
+        transform: translateY(-5px);
+        box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1)!important;
+    }
+    .object-fit-cover { object-fit: cover; }
+</style>

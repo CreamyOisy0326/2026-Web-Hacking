@@ -1,0 +1,47 @@
+@model PhotoMarket.Models.Board
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-9">
+            <div class="mb-4">
+                <a asp-action="Index" class="text-decoration-none text-muted small">
+                    <i class="bi bi-arrow-left"></i> 목록으로 돌아가기
+                </a>
+            </div>
+
+            <article class="card shadow-sm border-0 rounded-4 p-4 p-lg-5 bg-white">
+                <header class="mb-4 pb-4 border-bottom">
+                    <div class="badge bg-success-subtle text-success mb-2 px-3 py-2 rounded-pill">자유 게시판</div>
+                    <h1 class="fw-bold display-6">@Model.Title</h1>
+                    <div class="d-flex align-items-center mt-3 text-muted">
+                        <div class="me-3">
+                            <i class="bi bi-person-circle"></i> @(Model.Author?.UserName ?? "알 수 없음")
+                        </div>
+                        <div class="me-3">
+                            <i class="bi bi-calendar3"></i> @Model.CreatedAt.ToString("yyyy년 MM월 dd일 HH:mm")
+                        </div>
+                    </div>
+                </header>
+
+                <div class="content fs-5 lh-base" style="white-space: pre-wrap;">
+                    @Model.Content
+                </div>
+
+                @if (User.Identity?.Name == Model.Author?.UserName || User.IsInRole("Admin"))
+                {
+                    <footer class="mt-5 pt-4 border-top d-flex gap-2">
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-secondary rounded-pill px-4">수정</a>
+                        <form asp-action="Delete" asp-route-id="@Model.Id" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-outline-danger rounded-pill px-4">삭제</button>
+                        </form>
+                    </footer>
+                }
+            </article>
+        </div>
+    </div>
+</div>

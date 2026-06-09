@@ -1,0 +1,43 @@
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<PhotoMarket.SharedResource> SharedLocalizer
+
+@{
+    ViewData["Title"] = SharedLocalizer["Recharge"];
+    int[] amounts = { 5000, 10000, 30000, 50000 };
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bold text-primary"><i class="bi bi-lightning-charge-fill me-2"></i>@SharedLocalizer["Recharge"]</h1>
+        <p class="text-muted">@SharedLocalizer["SelectAmount"]</p>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        @foreach (var amount in amounts)
+        {
+            <div class="col">
+                <div class="card h-100 border-0 shadow-sm hover-shadow transition rounded-4 p-4 text-center bg-light-subtle">
+                    <div class="card-body">
+                        <div class="display-6 fw-bold text-primary mb-3">💰 @amount.ToString("N0")</div>
+                        <p class="text-muted small mb-4">크레딧 충전</p>
+                        <form asp-action="Recharge" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="amount" value="@amount" />
+                            <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill shadow-sm">
+                                <i class="bi bi-plus-circle me-2"></i>@SharedLocalizer["Charge"]
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .transition { transition: transform .2s ease-in-out, box-shadow .2s ease-in-out; }
+    .hover-shadow:hover { 
+        transform: translateY(-5px);
+        box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1)!important;
+    }
+</style>

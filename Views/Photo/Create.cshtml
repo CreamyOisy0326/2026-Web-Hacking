@@ -1,0 +1,54 @@
+@model PhotoMarket.Models.Photo
+
+@{
+    ViewData["Title"] = "사진 업로드";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow border-0 p-4">
+                <h2 class="text-center fw-bold mb-4">사진 판매 등록</h2>
+                <form asp-action="Create" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="All" class="text-danger mb-3"></div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label fw-bold">제목</label>
+                        <input asp-for="Title" class="form-control" placeholder="사진 제목을 입력하세요." />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label fw-bold">설명</label>
+                        <textarea asp-for="Description" class="form-control" rows="3" placeholder="사진에 대한 설명을 적어주세요."></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Price" class="form-label fw-bold">가격 (₩)</label>
+                            <input asp-for="Price" class="form-control" type="number" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">이미지 파일</label>
+                            <input type="file" name="imageFile" class="form-control" accept=".jpg,.jpeg,.png" required />
+                            <span class="text-danger small">JPG, PNG 파일만 가능합니다.</span>
+                        </div>
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">업로드 완료</button>
+                    </div>
+                </form>
+            </div>
+            <div class="mt-3 text-center">
+                <a asp-action="Index" class="text-muted small">취소하고 돌아가기</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
