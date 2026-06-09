@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="WelcomeMessage" xml:space="preserve"><value>安全な写真取引の始まり、フォトマーケット</value></data>
+  <data name="WelcomeSubtitle" xml:space="preserve"><value>信頼できるプラットフォームで大切な資産を安全に取引しましょう。</value></data>
+  <data name="ExploreNow" xml:space="preserve"><value>今すぐ始める</value></data>
+  <data name="IntroTitle" xml:space="preserve"><value>なぜフォトマーケットなのか？</value></data>
+  <data name="Feature1Title" xml:space="preserve"><value>強力なセキュリティ</value></data>
+  <data name="Feature1Desc" xml:space="preserve"><value>すべての写真データは、業界標準のセキュリティ技術で安全に保護されています。</value></data>
+  <data name="Feature2Title" xml:space="preserve"><value>検証された品質</value></data>
+  <data name="Feature2Desc" xml:space="preserve"><value>専門的な審査プロセスを経た高解像度のアセットのみを取り扱います。</value></data>
+  <data name="Feature3Title" xml:space="preserve"><value>自由なコミュニケーション</value></data>
+  <data name="Feature3Desc" xml:space="preserve"><value>グローバルコミュニティを通じてアイデアを共有し、成長しましょう。</value></data>
+</root>

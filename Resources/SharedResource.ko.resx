@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PriceRequired" xml:space="preserve">
+    <value>가격을 입력해주세요.</value>
+  </data>
+  <data name="PriceRange" xml:space="preserve">
+    <value>가격은 1원 이상이어야 합니다.</value>
+  </data>
+  <data name="TitleRequired" xml:space="preserve">
+    <value>제목을 입력해주세요.</value>
+  </data>
+  <data name="AdminDashboard" xml:space="preserve">
+    <value>관리자 대시보드</value>
+  </data>
+  <data name="ManagePhotos" xml:space="preserve">
+    <value>모든 사진 관리</value>
+  </data>
+  <data name="ManagePosts" xml:space="preserve">
+    <value>모든 게시글 관리</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>제목</value>
+  </data>
+  <data name="Seller" xml:space="preserve">
+    <value>판매자</value>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>작성자</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>가격</value>
+  </data>
+  <data name="CreatedAt" xml:space="preserve">
+    <value>작성일</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>작업</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>삭제</value>
+  </data>
+  <data name="ConfirmDeletePhoto" xml:space="preserve">
+    <value>이 사진을 강제 삭제하시겠습니까?</value>
+  </data>
+  <data name="ConfirmDeletePost" xml:space="preserve">
+    <value>이 게시글을 강제 삭제하시겠습니까?</value>
+  </data>
+  <data name="MyCollection" xml:space="preserve">
+    <value>내 사진첩</value>
+  </data>
+  <data name="NoPurchasedPhotos" xml:space="preserve">
+    <value>아직 소장한 사진이 없습니다. 마켓에서 멋진 사진을 찾아보세요!</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>다운로드</value>
+  </data>
+  <data name="Recharge" xml:space="preserve">
+    <value>크레딧 충전</value>
+  </data>
+  <data name="SelectAmount" xml:space="preserve">
+    <value>충전하실 금액을 선택해주세요.</value>
+  </data>
+  <data name="Charge" xml:space="preserve">
+    <value>충전하기</value>
+  </data>
+  <data name="RechargeSuccess" xml:space="preserve">
+    <value>성공적으로 충전되었습니다!</value>
+  </data>
+  <data name="NoPhotosMessage" xml:space="preserve">
+    <value>소장한 사진이 없습니다. 마켓에서 멋진 사진을 찾아보세요!</value>
+  </data>
+</root>
